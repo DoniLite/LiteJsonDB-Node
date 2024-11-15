@@ -7,9 +7,9 @@
 
 To get started with LiteJsonDB, you need to install it via npm. It's super easy! Just run the following command in your terminal:
 
-<pre>
-npm install litejsondb
-</pre>
+```bash
+   npm install litejsondb
+```
 
 ## 🎯 Usage
 
@@ -17,36 +17,39 @@ npm install litejsondb
 
 Once installed, you can import LiteJsonDB and initialize your database like this:
 
-<pre>
-const litejsondb = require('litejsondb');
-const db = new litejsondb();
-</pre>
+```javascript
+   const litejsondb = require('litejsondb');
+   const db = new litejsondb();
+   // or you can use
+   import JsonDB from 'litejsondb';
+   const db = new JsonDB();
+```
 
 ### 📥 Adding Data
 
 Adding data is a breeze with LiteJsonDB. Use the `setData` method to store information in the database:
 
-<pre>
-db.setData('users/1', { name: 'Aliou', age: 30 });
-db.setData('products/1', { name: 'Laptop', price: 999.99 });
-</pre>
+```javascript
+   db.setData('users/1', { name: 'Aliou', age: 30 });
+   db.setData('products/1', { name: 'Laptop', price: 999.99 });
+```
 
 ### 🔄 Editing Data
 
 To update existing data, use `editData`. You can modify information without erasing what’s already there:
 
-<pre>
-db.editData('users/1', { age: 31 });
-</pre>
+```javascript
+   db.editData('users/1', { age: 31 });
+```
 
 ### 📜 Getting Data
 
 The `getData` method allows you to retrieve data from the database. You can specify the exact path of the data you want to access. Here’s how you can use it:
 
-<pre>
-console.log('User 1:', db.getData('users/1'));
-console.log('Product 1:', db.getData('products/1'));
-</pre>
+```javascript
+   console.log('User 1:', db.getData('users/1'));
+   console.log('Product 1:', db.getData('products/1'));
+```
 
 **Explanation**:
 - **Path Specification**: You use a key path like `'users/1'` or `'products/1'` to retrieve specific entries from the database. The key path is a string that denotes the location of the data in the hierarchical structure of the database.
@@ -58,17 +61,17 @@ Need to delete data? No problem! The `deleteData` method allows you to remove sp
 
 1. **Delete Specific Entry**: If you want to delete a specific entry, provide the exact key path:
    
-   <pre>
-   db.deleteData('products/1');
-   </pre>
+   ```javascript
+      db.deleteData('products/1');
+   ```
 
    This command will remove only the data located at `'products/1'`, leaving other data intact.
 
 2. **Delete All Data Under a Path**: If you want to delete all data under a specific key path, you can use a nested key path:
 
-   <pre>
-   db.deleteData('products');
-   </pre>
+   ```javascript
+      db.deleteData('products');
+   ```
 
    This will remove the entire `'products'` section, including all entries within it, such as `'products/1'` and any other nested products. 
 
@@ -80,10 +83,10 @@ Need to delete data? No problem! The `deleteData` method allows you to remove sp
 
 You can also search your data with `searchData`. This helps you find specific values anywhere in the database:
 
-<pre>
-const searchResults = db.searchData(db.getData(), 'Aliou');
-console.log(searchResults);
-</pre>
+```javascript
+   const searchResults = db.searchData(db.getData(), 'Aliou');
+   console.log(searchResults);
+```
 
 ### 🛠️ Utility Functions
 
@@ -96,38 +99,38 @@ LiteJsonDB includes some handy utility functions:
 
 Here’s how you can use them:
 
-<pre>
-const hashedPassword = db.hashPassword('myPassword123');
-const isPasswordValid = db.checkPassword(hashedPassword, 'myPassword123');
-const defaultValue = db.getOrDefault(testObj, 'country', 'Unknown');
-const keyExists = db.keyExistsOrAdd(testObj, 'country', 'Unknown');
-</pre>
+```javascript
+   const hashedPassword = db.hashPassword('myPassword123');
+   const isPasswordValid = db.checkPassword(hashedPassword, 'myPassword123');
+   const defaultValue = db.getOrDefault(testObj, 'country', 'Unknown');
+   const keyExists = db.keyExistsOrAdd(testObj, 'country', 'Unknown');
+```
 
 ## 📖 Example Code
 
 Here’s a small example to show you how everything works together:
 
-<pre>
-const litejsondb = require('litejsondb');
-const db = new litejsondb();
+```javascript
+   const litejsondb = require('litejsondb');
+   const db = new litejsondb();
 
-// Set initial data
-db.setData('users/1', { name: 'Aliou', age: 30 });
-db.setData('products/1', { name: 'Laptop', price: 999.99 });
+   // Set initial data
+   db.setData('users/1', { name: 'Aliou', age: 30 });
+   db.setData('products/1', { name: 'Laptop', price: 999.99 });
 
-// Edit data
-db.editData('users/1', { age: 31 });
+   // Edit data
+   db.editData('users/1', { age: 31 });
 
-// Get data
-console.log('User 1:', db.getData('users/1'));
-console.log('Product 1:', db.getData('products/1'));
+   // Get data
+   console.log('User 1:', db.getData('users/1'));
+   console.log('Product 1:', db.getData('products/1'));
 
-// Delete Data
-db.deleteData('products/1');
+   // Delete Data
+   db.deleteData('products/1');
 
-// Show the entire database content
-console.log('Database Content:', db.showDb());
-</pre>
+   // Show the entire database content
+   console.log('Database Content:', db.showDb());
+```
 
 ## 🛠️ Future Development
 
